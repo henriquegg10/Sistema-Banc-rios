@@ -1,147 +1,108 @@
 # Sistema Bancário – Registro e Gestão de Contas
 
-Projeto desenvolvido em C++ para implementar um sistema de registro e gestão de contas bancárias, permitindo cadastrar clientes, consultar contas e realizar movimentações financeiras.
+Projeto desenvolvido em C++ para a disciplina **INF101 – Programação de Computadores I**, do Centro Universitário de Viçosa (UNIVIÇOSA). O sistema permite cadastrar contas bancárias, consultar informações e realizar movimentações financeiras, conforme os requisitos da Etapa 2 do trabalho.
 
 ## Objetivo
 
-O projeto foi desenvolvido para implementar um sistema bancário capaz de:
-
-1. Cadastrar e gerenciar várias contas bancárias.
-2. Realizar operações de depósito, saque e transferência.
-3. Consultar informações e saldos das contas.
-4. Registrar e consultar o histórico de movimentações financeiras.
+O projeto foi desenvolvido para aplicar conceitos de programação em C++, utilizando arrays, funções, estruturas de decisão e repetição para gerenciar várias contas bancárias e registrar suas movimentações em memória.
 
 ## Funcionalidades
 
 ### 1. Cadastrar contas bancárias
 
-O programa permite cadastrar novas contas, armazenando informações como:
+O programa permite cadastrar até 100 contas, armazenando:
 
-- Número da conta
-- Nome completo do cliente
-- CPF
-- Tipo de conta (Corrente ou Poupança)
-- Saldo inicial
-- Situação da conta (Ativa ou Inativa)
-
-Os números das contas são gerados automaticamente, começando pelo número `1001`.
+- Número da conta, gerado automaticamente a partir de `1001`;
+- Nome completo do cliente;
+- CPF;
+- Tipo de conta: corrente ou poupança;
+- Saldo inicial de R$ 0,00;
+- Situação da conta (ativa no momento do cadastro).
 
 ### 2. Listar e consultar contas
 
-O sistema permite visualizar todas as contas cadastradas e consultar individualmente uma conta pelo número.
-
-São apresentadas informações como:
-
-- Número da conta
-- Nome do cliente
-- CPF
-- Tipo de conta
-- Saldo disponível
-- Situação da conta
+O sistema permite listar todas as contas cadastradas ou consultar uma conta específica pelo número. São exibidos o número, nome do cliente, CPF, tipo de conta, saldo e situação.
 
 ### 3. Realizar depósitos
 
-O programa permite realizar depósitos em contas cadastradas.
-
-São realizadas as seguintes verificações:
-
-- Existência da conta.
-- Situação ativa da conta.
-- Valor do depósito maior que zero.
-- Disponibilidade de espaço no histórico de movimentações.
-
-Após a operação, o saldo é atualizado e a movimentação é registrada com o código `D`.
+Permite adicionar valores a uma conta ativa. O sistema verifica se a conta existe, se está ativa, se o valor é maior que zero e se há espaço no histórico. O depósito atualiza o saldo e é registrado com o código `D`.
 
 ### 4. Realizar saques
 
-O sistema permite retirar valores das contas, verificando:
-
-- Existência da conta.
-- Situação ativa da conta.
-- Valor do saque maior que zero.
-- Saldo suficiente para realizar a operação.
-
-Após a confirmação, o saldo é atualizado e a movimentação é registrada com o código `S`.
+Permite retirar valores de uma conta ativa. Antes de concluir a operação, o programa verifica se a conta existe, se está ativa, se o valor é positivo, se há espaço no histórico e se existe saldo suficiente. O saque é registrado com o código `S`.
 
 ### 5. Realizar transferências
 
-O programa permite transferir valores entre duas contas cadastradas.
+Permite transferir valores entre duas contas cadastradas e ativas. O sistema verifica se as contas existem, se são diferentes, se o valor é positivo, se há saldo suficiente na conta de origem e se há espaço para os dois registros no histórico.
 
-Antes de realizar a operação, são verificadas:
+Cada transferência gera dois registros:
 
-- Existência das duas contas.
-- Situação ativa de ambas.
-- Diferença entre a conta de origem e a de destino.
-- Valor positivo da transferência.
-- Saldo suficiente na conta de origem.
-- Espaço disponível para registrar as duas movimentações.
-
-Cada transferência gera dois registros no histórico:
-
-- `S` – Saída do valor na conta de origem.
-- `D` – Entrada do valor na conta de destino.
+- `S`: saída do valor na conta de origem;
+- `D`: entrada do valor na conta de destino.
 
 ### 6. Exibir extrato bancário
 
-O sistema permite consultar o histórico de movimentações de uma conta específica.
-
-São apresentados:
-
-- Depósitos e entradas.
-- Saques e saídas.
-- Total de entradas.
-- Total de saídas.
-- Saldo atual da conta.
+Apresenta somente as movimentações da conta consultada, mostrando depósitos/entradas, saques/saídas, total de entradas, total de saídas e saldo atual.
 
 ### 7. Armazenamento dos dados
 
-O projeto utiliza arrays para armazenar as informações em memória.
+As contas e as movimentações são armazenadas em arrays paralelos:
 
-Foram definidos os seguintes limites:
+- Limite de 100 contas;
+- Limite de 500 movimentações.
 
-- Até 100 contas bancárias.
-- Até 500 movimentações financeiras.
-
-Os dados permanecem disponíveis enquanto o programa estiver em execução. Ao fechar o sistema, as informações são perdidas, conforme a proposta da Etapa 2.
+Os dados permanecem apenas na memória durante a execução. Ao fechar o programa, as informações são perdidas, conforme solicitado na Etapa 2. A persistência dos dados será desenvolvida na Etapa 3.
 
 ## Tecnologias utilizadas
 
 - C++
 - Arrays (vetores)
+- Funções
 - Estruturas de decisão (`if`, `else` e `switch`)
 - Estruturas de repetição (`for` e `do while`)
-- Funções
-- Manipulação de dados em memória
+- Entrada e saída de dados pelo terminal
 
 ## Instalação
 
-Primeiro, clone o repositório:
+Primeiro, clone este repositório:
 
 ```bash
-git clone https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git
+git clone https://github.com/henriquegg10/Sistema-Banc-rios.git
 ```
 
 Entre na pasta do projeto:
 
 ```bash
-cd NOME-DO-REPOSITORIO
+cd Sistema-Banc-rios
 ```
 
 ## Compilação e execução
 
-Para compilar o programa utilizando o compilador G++, execute:
+É necessário ter um compilador C++ instalado, como o G++.
+
+### Windows
+
+Compile o programa:
 
 ```bash
-g++ -std=c++17 SistemaBancario.cpp -o SistemaBancario
+g++ -std=c++17 -Wall -Wextra -pedantic SistemaBancario.cpp -o SistemaBancario.exe
 ```
 
-Para executar no Windows:
+Execute:
 
 ```bash
 SistemaBancario.exe
 ```
 
-Para executar no Linux:
+### Linux
+
+Compile o programa:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic SistemaBancario.cpp -o SistemaBancario
+```
+
+Execute:
 
 ```bash
 ./SistemaBancario
@@ -149,11 +110,9 @@ Para executar no Linux:
 
 ## Estrutura do projeto
 
-- `SistemaBancario.cpp` – Código-fonte principal do sistema.
-- `README.md` – Documentação e instruções de utilização.
+- `SistemaBancario.cpp` – código-fonte do sistema bancário;
+- `README.md` – documentação do projeto e instruções de compilação e execução.
 
 ## Considerações finais
 
-O projeto foi desenvolvido como parte da atividade da disciplina INF101 – Programação de Computadores I, referente à Etapa 2 do trabalho de implementação de um Sistema de Registro e Gestão de Contas Bancárias.
-
-O objetivo é aplicar conceitos fundamentais de programação em C++, utilizando arrays, funções, estruturas de decisão e repetição para organizar contas bancárias e registrar movimentações financeiras.
+Este projeto corresponde à **Etapa 2** do trabalho de implementação de um Sistema de Registro e Gestão de Contas Bancárias da disciplina INF101 – Programação de Computadores I.
